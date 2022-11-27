@@ -9,10 +9,10 @@ class Enemies {
 
     _runLeft() {
         this.runEnemieInterval = setInterval(() => {
-            if (this.x < 0) {
+            if (this.x + this.width < 0) {
                 clearInterval(this.runEnemieInterval);
             }
-            this.x = this.x - 5;
+            this.x = this.x - 3;
         }, 20) 
     }
 

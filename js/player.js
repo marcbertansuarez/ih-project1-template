@@ -4,6 +4,7 @@ class Player {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.bullets = [];
     }
 
     moveRight() {
@@ -14,7 +15,13 @@ class Player {
         this.x = this.x - 10;
     }
 
-    //shoot()
+    shoot(){
+           
+    }
+
+}
+       
+
+
 
     //_assignPImage()
-}

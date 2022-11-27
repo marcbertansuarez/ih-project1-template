@@ -14,5 +14,7 @@ class Player {
         this.x = this.x - 10;
     }
 
-    shoot()
+    //shoot()
+
+    //_assignPImage()
 }

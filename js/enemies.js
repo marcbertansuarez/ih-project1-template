@@ -16,5 +16,5 @@ class Enemies {
         }, 20) 
     }
 
-    _assignImage()
+    //_assignEImage()
 }

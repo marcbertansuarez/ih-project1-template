@@ -12,13 +12,13 @@ class Game{
     this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
   }
 
-  _generateEnemies() {
-    this.generateEnemiesInt = setInterval(() => {
-      const newEnemies = new Enemies(1030, 550, 50, 50);
-      newEnemies._runLeft();
-      this.enemies.push(newEnemies)
-    }, 1000); 
-  }
+   _generateEnemies() {
+     this.generateEnemiesInt = setInterval(() => {
+       const newEnemies = new Enemies(1300, 550, 50, 50);
+       newEnemies._runLeft();
+       this.enemies.push(newEnemies)
+     }, 1000); 
+   }
 
   _drawEnemies() {
     this.enemies.forEach((elem) => {
@@ -40,21 +40,24 @@ class Game{
       }
     })
    }
-
+   
     _checkKills() {
       this.player.bullets.forEach((bullet) => {
+        let indexBullet = this.player.bullets.indexOf(bullet);
         this.enemies.forEach((enemie) => {
         if (bullet.x >= enemie.x) {
           this.points++;
-          let indexBullet = this.player.bullets.indexOf(bullet);
           let indexEnemie = this.enemies.indexOf(enemie);
           this.player.bullets.splice(indexBullet, 1);
           this.enemies.splice(indexEnemie, 1);
           if (this.points == 20) {
             this._winPage();
           }
-        }
+        } 
       });
+      if(bullet.x == 950) {
+        this.player.bullets.splice(indexBullet, 1);
+      }
     });
   }
 

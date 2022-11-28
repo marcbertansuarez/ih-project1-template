@@ -12,8 +12,8 @@ class Enemies {
             if (this.x + this.width < 0) {
                 clearInterval(this.runEnemieInterval);
             }
-            this.x = this.x - 2;
-        }, 20) 
+            this.x = this.x - 6;
+        }, 40) 
     }
 
     //_assignEImage()

@@ -50,7 +50,9 @@ class Game{
           let indexEnemie = this.enemies.indexOf(enemie);
           this.player.bullets.splice(indexBullet, 1);
           this.enemies.splice(indexEnemie, 1);
-          this.points++
+          if (this.points == 20) {
+            this._winPage();
+          }
         }
       });
     });
@@ -68,6 +70,14 @@ class Game{
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
+   }
+
+   _winPage() {
+    clearInterval(this.generateEnemiesInt);
+    const winPage = document.getElementById('win-page');
+    winPage.style = "display: flex";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display:none";
    }
 
   _assignControls() {

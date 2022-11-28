@@ -46,6 +46,12 @@ class Game{
     })
    }
 
+   _writeScore() {
+    this.ctx.fillStyle = "black";
+    this.ctx.font = "20px Arial";
+    this.ctx.fillText(`Score: ${this.points}`, 50, 100);
+   }
+
    _gameOver() {
     clearInterval(this.generateEnemiesInt);
     const losePage = document.getElementById('lose-page');
@@ -83,6 +89,7 @@ class Game{
     this._drawEnemies();
     this._drawBullets();
     this._checkCollissions();
+    this._writeScore();
     window.requestAnimationFrame(() => this._update());
   }
 

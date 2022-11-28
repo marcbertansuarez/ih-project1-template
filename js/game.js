@@ -26,17 +26,12 @@ class Game{
       this.ctx.fillRect(elem.x, elem.y, elem.width, elem.height);
     })
   }
-
-    _generateBullets() {
-      
+     _drawBullets(){
+       this.player.bullets.forEach((bullet) => {
+         this.ctx.fillStyle = "black";
+         this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+       })
     }
-
-    _drawBullets(){
-      this.player.bullets.forEach((bullet) => {
-        this.ctx.fillStyle = "black";
-        this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-      })
-   }
 
    _checkCollissions() {
     this.enemies.forEach((enemie) => {
@@ -45,6 +40,18 @@ class Game{
       }
     })
    }
+
+    _checkKills() {
+     this.player.bullets.forEach((bullet) => {
+     for (let i = 0; i < this.enemies.length; i++) {
+         if (bullet.x + bullet.width == this.enemies[i].x) {
+          
+         }
+       }
+     })
+    }
+
+
 
    _writeScore() {
     this.ctx.fillStyle = "black";

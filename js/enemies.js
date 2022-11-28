@@ -12,7 +12,7 @@ class Enemies {
             if (this.x + this.width < 0) {
                 clearInterval(this.runEnemieInterval);
             }
-            this.x = this.x - 3;
+            this.x = this.x - 2;
         }, 20) 
     }
 

@@ -13,7 +13,7 @@ class Bullets {
                  clearInterval(this.shootingInterval);
              }
              this.x = this.x + 10;
-         }, 20) 
+         }, 20);
      }
 
 }

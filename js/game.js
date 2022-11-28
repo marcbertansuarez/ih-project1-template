@@ -35,23 +35,26 @@ class Game{
 
    _checkCollissions() {
     this.enemies.forEach((enemie) => {
-      if (this.player.x + this.player.width == enemie.x ) {
+      if (this.player.x + this.player.width >= enemie.x ) {
         this._gameOver();
       }
     })
    }
 
     _checkKills() {
-     this.player.bullets.forEach((bullet) => {
-     for (let i = 0; i < this.enemies.length; i++) {
-         if (bullet.x + bullet.width == this.enemies[i].x) {
-          
-         }
-       }
-     })
-    }
-
-
+      this.player.bullets.forEach((bullet) => {
+        this.enemies.forEach((enemie) => {
+        if (bullet.x >= enemie.x) {
+          this.points++;
+          let indexBullet = this.player.bullets.indexOf(bullet);
+          let indexEnemie = this.enemies.indexOf(enemie);
+          this.player.bullets.splice(indexBullet, 1);
+          this.enemies.splice(indexEnemie, 1);
+          this.points++
+        }
+      });
+    });
+  }
 
    _writeScore() {
     this.ctx.fillStyle = "black";
@@ -77,7 +80,7 @@ class Game{
         case 'ArrowRight':
           this.player.moveRight();
           break;
-        case 'ArrowDown':
+        case 'Space':
           this.player.shoot();
           break;
         default:
@@ -96,6 +99,7 @@ class Game{
     this._drawEnemies();
     this._drawBullets();
     this._checkCollissions();
+    this._checkKills();
     this._writeScore();
     window.requestAnimationFrame(() => this._update());
   }

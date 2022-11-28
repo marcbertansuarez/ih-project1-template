@@ -12,7 +12,7 @@ class Bullets {
             if (this.x > 1000) {
                  clearInterval(this.shootingInterval);
              }
-             this.x = this.x + 10;
+             this.x = this.x + 5;
          }, 20);
      }
 

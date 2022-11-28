@@ -1,10 +1,10 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.player = new Player(100, 550, 50, 50);
+    this.player = new Player(0, 550, 50, 50);
     this.enemies = [];
-    this.bullets = [];
     this.points = 0;
+    this.generateEnemiesInt = undefined
   }
 
   _drawPlayer() {
@@ -13,7 +13,7 @@ class Game{
   }
 
   _generateEnemies() {
-    setInterval(() => {
+    this.generateEnemiesInt = setInterval(() => {
       const newEnemies = new Enemies(1030, 550, 50, 50);
       newEnemies._runLeft();
       this.enemies.push(newEnemies)
@@ -28,18 +28,30 @@ class Game{
   }
 
     _generateBullets() {
-      setInterval(() => {
-        const newBullets = new Bullets(this.player.width + this.player.x, 600 - (this.player.height/2), 5, 5);
-        newBullets._shooting();
-        this.bullets.push(newBullets);
-      }, 100);
+      
     }
 
     _drawBullets(){
-      this.bullets.forEach((bullet) => {
+      this.player.bullets.forEach((bullet) => {
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
       })
+   }
+
+   _checkCollissions() {
+    this.enemies.forEach((enemie) => {
+      if (this.player.x + this.player.width == enemie.x ) {
+        this._gameOver();
+      }
+    })
+   }
+
+   _gameOver() {
+    clearInterval(this.generateEnemiesInt);
+    const losePage = document.getElementById('lose-page');
+    losePage.style = "display: flex";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display: none";
    }
 
   _assignControls() {
@@ -70,13 +82,13 @@ class Game{
     this._drawPlayer();
     this._drawEnemies();
     this._drawBullets();
+    this._checkCollissions();
     window.requestAnimationFrame(() => this._update());
   }
 
   start() {
     this._update();
     this._generateEnemies();
-    this._generateBullets();
     this._assignControls();
     
   }

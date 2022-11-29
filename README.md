@@ -22,7 +22,7 @@ Minimum user stories:
 
 ## User stories Backlog
 
-- User can ...
+- User can jump
 
 ## File structure
 

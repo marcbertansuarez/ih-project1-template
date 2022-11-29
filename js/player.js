@@ -17,7 +17,7 @@ class Player {
   }
 
   shoot() {
-    const newBullets = new Bullets(this.width + this.x, 600 - this.height / 2, 5, 5);
+    const newBullets = new Bullets(this.width + this.x - 10, 475 - this.height / 2, 5, 5);
     newBullets._shooting();
     this.bullets.push(newBullets);
   }

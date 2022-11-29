@@ -5,7 +5,7 @@
 
 /* Basic styles, change according to your style */
 
-#start-page,
+
 #lose-page {
   height: 600px;
   width: 1000px;
@@ -18,6 +18,41 @@
   border: 1px solid black;
   margin-top: 30px;
 }
+
+#start-page {
+  background-image: url("../img/startpage.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 600px;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid black;
+  margin-top: 30px;
+}
+
+#start-page h1 {
+  font-size: 50px;
+  color: lightblue;
+  margin-top: -15%;
+  padding-bottom: 50px;
+  
+}
+
+#start-page p {
+  color: black;
+  width: 50%;
+  margin-left: 25%;
+  margin-bottom: 5%;
+  
+}
+
+
+
 
 #win-page {
   height: 600px;
@@ -46,6 +81,9 @@ canvas {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 50px;
+  background-image: url("../img/backgroundzombie.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /* Auxiliar classes */

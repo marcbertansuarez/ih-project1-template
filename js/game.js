@@ -1,7 +1,7 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.player = new Player(0, 520, 90, 90);
+    this.player = new Player(0, 370, 120, 120);
     this.enemies = [];
     this.points = 0;
     this.generateEnemiesInt = undefined
@@ -15,7 +15,7 @@ class Game{
 
    _generateEnemies() {
      this.generateEnemiesInt = setInterval(() => {
-       const newEnemies = new Enemies(1300, 530, 70, 70);
+       const newEnemies = new Enemies(1300, 380, 100, 100);
        newEnemies._runLeft();
        this.enemies.push(newEnemies)
      }, 1000); 
@@ -37,7 +37,7 @@ class Game{
 
    _checkCollissions() {
     this.enemies.forEach((enemie) => {
-      if (this.player.x + this.player.width >= enemie.x ) {
+      if (this.player.x + this.player.width - 40 >= enemie.x ) {
         this._gameOver();
       }
     })
@@ -64,9 +64,9 @@ class Game{
   }
 
    _writeScore() {
-    this.ctx.fillStyle = "black";
-    this.ctx.font = "20px Arial";
-    this.ctx.fillText(`Score: ${this.points}`, 50, 100);
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "30px Arial";
+    this.ctx.fillText(`Score: ${this.points}`, 10, 50);
    }
 
    _gameOver() {

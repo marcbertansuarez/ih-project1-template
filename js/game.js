@@ -1,20 +1,21 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.player = new Player(0, 550, 50, 50);
+    this.player = new Player(0, 520, 90, 90);
     this.enemies = [];
     this.points = 0;
     this.generateEnemiesInt = undefined
   }
 
-  _drawPlayer() {
-    this.ctx.fillStyle = "green";
-    this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
-  }
+   _drawPlayer() {
+    this.ctx.drawImage(this.player.image, this.player.x, this.player.y, this.player.width, this.player.height);
+    //  this.ctx.fillStyle = "green";
+    //  this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
+   }
 
    _generateEnemies() {
      this.generateEnemiesInt = setInterval(() => {
-       const newEnemies = new Enemies(1300, 550, 50, 50);
+       const newEnemies = new Enemies(1300, 530, 70, 70);
        newEnemies._runLeft();
        this.enemies.push(newEnemies)
      }, 1000); 
@@ -22,8 +23,9 @@ class Game{
 
   _drawEnemies() {
     this.enemies.forEach((elem) => {
-      this.ctx.fillStyle = "red";
-      this.ctx.fillRect(elem.x, elem.y, elem.width, elem.height);
+      this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
+      // this.ctx.fillStyle = "red";
+      // this.ctx.fillRect(elem.x, elem.y, elem.width, elem.height);
     })
   }
      _drawBullets(){

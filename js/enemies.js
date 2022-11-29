@@ -1,5 +1,6 @@
 class Enemies {
     constructor(x, y, width, height) {
+        this.image = zombieArr[Math.floor(Math.random() * zombieArr.length)];
         this.x = x;
         this.y = y;
         this.width = width;

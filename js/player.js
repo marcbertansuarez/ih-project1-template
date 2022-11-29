@@ -1,5 +1,6 @@
 class Player {
   constructor(x, y, width, height) {
+    this.image = survivor;
     this.x = x;
     this.y = y;
     this.width = width;

@@ -5,6 +5,7 @@ class Enemies {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.health = 3;
         this.runEnemieInterval = undefined;
     }
 
@@ -13,7 +14,7 @@ class Enemies {
             if (this.x + this.width < 0) {
                 clearInterval(this.runEnemieInterval);
             }
-            this.x = this.x - 6;
+            this.x = this.x - (Math.floor(Math.random() * 12));
         }, 40) 
     }
 

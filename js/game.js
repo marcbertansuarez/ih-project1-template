@@ -18,7 +18,7 @@ class Game{
        const newEnemies = new Enemies(1300, 380, 100, 100);
        newEnemies._runLeft();
        this.enemies.push(newEnemies)
-     }, 1000); 
+     }, Math.floor(Math.random() * 1000)); 
    }
 
   _drawEnemies() {
@@ -30,8 +30,9 @@ class Game{
   }
      _drawBullets(){
        this.player.bullets.forEach((bullet) => {
-         this.ctx.fillStyle = "black";
-         this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+        this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
+        //  this.ctx.fillStyle = "black";
+        //  this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
        })
     }
 
@@ -48,11 +49,15 @@ class Game{
         let indexBullet = this.player.bullets.indexOf(bullet);
         this.enemies.forEach((enemie) => {
         if (bullet.x >= enemie.x) {
+          enemie.health--;
+          this.player.bullets.splice(indexBullet, 1);
+          if(enemie.health == 0) {
           this.points++;
           let indexEnemie = this.enemies.indexOf(enemie);
           this.player.bullets.splice(indexBullet, 1);
           this.enemies.splice(indexEnemie, 1);
-          if (this.points == 20) {
+          }
+          if (this.points == 30) {
             this._winPage();
           }
         } 

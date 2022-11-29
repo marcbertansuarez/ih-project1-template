@@ -1,5 +1,6 @@
 class Bullets {
     constructor(x, y, width, height) {
+        this.image = bullet;
         this.x = x;
         this.y = y;
         this.width = width;

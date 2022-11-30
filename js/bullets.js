@@ -6,6 +6,7 @@ class Bullets {
         this.width = width;
         this.height = height;
         this.shootingInterval = undefined;
+        this.shootingDelay = false;
     }
 
      _shooting() {

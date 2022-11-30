@@ -18,8 +18,14 @@ class Player {
 
   shoot() {
     const newBullets = new Bullets(this.width + this.x - 10, 455 - this.height / 2, 40, 40);
-    newBullets._shooting();
-    this.bullets.push(newBullets);
+    if(newBullets.shootingDelay == false && this.bullets.length < 3) {
+      this.bullets.push(newBullets);
+      newBullets._shooting();
+      newBullets.shootingDelay = true;
+      setTimeout(() => {
+        newBullets.shootingDelay = false;
+      }, 800);
+    }
   }
 }
 

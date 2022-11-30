@@ -15,10 +15,10 @@ class Game{
 
    _generateEnemies() {
      this.generateEnemiesInt = setInterval(() => {
-       const newEnemies = new Enemies(1300, 380, 100, 100);
+       const newEnemies = new Enemies(1150, 380, 100, 100);
        newEnemies._runLeft();
        this.enemies.push(newEnemies)
-     }, Math.floor(Math.random() * 1000)); 
+     }, Math.floor(Math.random() * 500) + 300); 
    }
 
   _drawEnemies() {

@@ -3,6 +3,7 @@ class Game{
     this.ctx = context;
     this.player = new Player(0, 370, 120, 120);
     this.enemies = [];
+    this.superboss = new SuperBoss(1150, 380, 100, 100);
     this.points = 0;
     this.generateEnemiesInt = undefined
   }
@@ -18,7 +19,11 @@ class Game{
        const newEnemies = new Enemies(1150, 380, 100, 100);
        newEnemies._runLeft();
        this.enemies.push(newEnemies)
-     }, Math.floor(Math.random() * 500) + 300); 
+       if (this.points == 2) {
+        clearInterval(this.generateEnemiesInt);
+       } 
+     }, Math.floor(Math.random() * 500) + 500);
+     soundZombie.play();
    }
 
   _drawEnemies() {
@@ -57,15 +62,32 @@ class Game{
           this.player.bullets.splice(indexBullet, 1);
           this.enemies.splice(indexEnemie, 1);
           }
-          if (this.points == 30) {
-            this._winPage();
-          }
+          // if (enemie.health == 0 && this.points == 2) {
+          //   this.points = this.points + 0;;
+          // } checking if we score 2 points the next enemie death doesn't sum.
+          
+          // if (this.points == 30) {
+          //   this._winPage(); => winpage to decide when it's happening
+          // }
         } 
       });
       if(bullet.x == 950) {
         this.player.bullets.splice(indexBullet, 1);
       }
     });
+  }
+
+  _generateSuperboss() {
+    if(this.points >= 2) {
+        this.superboss._runLeft();
+        this.ctx.fillStyle = "green";
+        this.ctx.fillRect(this.superboss.x, this.superboss.y, this.superboss.width, this.superboss.height); 
+      
+      // const newSuperboss = new SuperBoss(900, 380, 100, 100);
+      // newSuperboss._runLeft(); 
+      // this.ctx.fillStyle = "green";
+      // this.ctx.fillRect(newSuperboss.x, newSuperboss.y, newSuperboss.width, newSuperboss.height); 
+    }
   }
 
    _writeScore() {
@@ -80,6 +102,8 @@ class Game{
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
+    soundZombie.pause();
+    ambientSound.pause();
    }
 
    _winPage() {
@@ -118,6 +142,7 @@ class Game{
     this._drawPlayer();
     this._drawEnemies();
     this._drawBullets();
+    this._generateSuperboss();
     this._checkCollissions();
     this._checkKills();
     this._writeScore();
@@ -128,6 +153,6 @@ class Game{
     this._update();
     this._generateEnemies();
     this._assignControls();
-    
+    ambientSound.play();
   }
 }

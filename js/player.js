@@ -22,11 +22,10 @@ class Player {
       this.bullets.push(newBullets);
       newBullets._shooting();
       newBullets.shootingDelay = true;
+      shootSound.play();
       setTimeout(() => {
         newBullets.shootingDelay = false;
       }, 800);
     }
   }
 }
-
-//_assignPImage()

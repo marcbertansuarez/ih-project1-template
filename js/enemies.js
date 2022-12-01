@@ -17,6 +17,4 @@ class Enemies {
             this.x = this.x - (Math.floor(Math.random() * 12));
         }, 40) 
     }
-
-    //_assignEImage()
 }

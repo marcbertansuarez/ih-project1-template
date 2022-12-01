@@ -15,3 +15,13 @@ const bullet = new Image();
 bullet.src = "../img/bullet.png";
 
 const zombieArr = [zombie1, zombie2, zombie3];
+
+const shootSound = new Audio("../sounds/singleshot2.mp3");
+shootSound.volume = 0.2;
+
+const soundZombie = new Audio("../sounds/soundzombies.mp3");
+soundZombie.volume = 0.06;
+soundZombie.loop = true;
+
+const ambientSound = new Audio("../sounds/ambientsound.wav")
+ambientSound.volume = 0.04;

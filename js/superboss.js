@@ -6,14 +6,23 @@ class SuperBoss {
         this.height = height;
         this.health = 50;
         this.runSuperbossInt = undefined
+        // this.healthImg = [0,1,2,3];
+        // //health img
+        // this.healthImgID = undefined;
+        //health img ID
     }
     _runLeft() {
-        console.log("hello");
         this.runSuperbossInt = setInterval(() => {
-            //  if (this.x == 600) {
-            //      clearInterval(this.runSuperbossInt);
-            //  }
-            this.x = this.x - 1;
-        }, 2000) //I don't understand why i have to add 2000 and not 40 as the enemies.
+              if (this.x == 600) {
+                  clearInterval(this.runSuperbossInt);
+              }
+            this.x = this.x - 10;
+        }, 40)
     }
+
+    // _showHealth() {
+    //     this.healthImgID = setInterval(() => {
+    //         if ()
+    //     }, 40);
+    // }
 }

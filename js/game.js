@@ -4,6 +4,7 @@ class Game{
     this.player = new Player(0, 370, 120, 120);
     this.enemies = [];
     this.superboss = new SuperBoss(1150, 380, 100, 100);
+    this.attackSB = [];
     this.points = 0;
     this.generateEnemiesInt = undefined
   }
@@ -47,6 +48,11 @@ class Game{
         this._gameOver();
       }
     })
+    //collissions player + superboss
+    if (this.player.x + this.player.width >= this.superboss.x) {
+      this._gameOver();
+    }
+    // To Do player + attackSB collissions
    }
    
     _checkKills() {
@@ -62,9 +68,12 @@ class Game{
           this.player.bullets.splice(indexBullet, 1);
           this.enemies.splice(indexEnemie, 1);
           }
-          // if (enemie.health == 0 && this.points == 2) {
-          //   this.points = this.points + 0;;
-          // } checking if we score 2 points the next enemie death doesn't sum.
+          //Same problem. Loop.
+          if(this.points >= 2) {
+            this._generateSuperboss();
+            this._generateAttackSB();
+          }
+          
           
           // if (this.points == 30) {
           //   this._winPage(); => winpage to decide when it's happening
@@ -78,18 +87,31 @@ class Game{
   }
 
   _generateSuperboss() {
-    if(this.points >= 2) {
-        this.superboss._runLeft();
-        this.ctx.fillStyle = "green";
-        this.ctx.fillRect(this.superboss.x, this.superboss.y, this.superboss.width, this.superboss.height); 
-      
-      // const newSuperboss = new SuperBoss(900, 380, 100, 100);
-      // newSuperboss._runLeft(); 
-      // this.ctx.fillStyle = "green";
-      // this.ctx.fillRect(newSuperboss.x, newSuperboss.y, newSuperboss.width, newSuperboss.height); 
+        this.superboss._runLeft(); 
     }
-  }
 
+  _drawSuperboss(){
+    this.ctx.fillStyle = "green";
+    this.ctx.fillRect(this.superboss.x, this.superboss.y, this.superboss.width, this.superboss.height);
+  } 
+//New generate Attack
+  _generateAttackSB() {
+    setInterval(() => {
+      const newAttackSB = new AttackSB();
+      newAttackSB._fallDown();
+      this.attackSB.push(newAttackSB);
+    }, 500);
+  }
+//Drawing SuperBoss Attack
+  _drawAttackSB() {
+    this.attackSB.forEach((elem) => {
+      this.ctx.fillStyle = "green";
+      this.ctx.fillRect(elem.x, elem.y, elem.width, elem.height);
+    })        
+  }
+  //Generating SB Health
+  _generateSBHealth() {
+  }
    _writeScore() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "30px Arial";
@@ -142,7 +164,8 @@ class Game{
     this._drawPlayer();
     this._drawEnemies();
     this._drawBullets();
-    this._generateSuperboss();
+    this._drawSuperboss(); //new ()
+    this._drawAttackSB(); //new ()
     this._checkCollissions();
     this._checkKills();
     this._writeScore();

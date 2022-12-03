@@ -3,7 +3,7 @@ class Game{
     this.ctx = context;
     this.player = new Player(0, 370, 120, 120);
     this.enemies = [];
-    this.superboss = new SuperBoss(1150, 380, 100, 100);
+    this.superboss = new SuperBoss(1150, 280, 180, 200);
     this.attackSB = [];
     this.points = 0;
     this.generateEnemiesInt = undefined
@@ -53,6 +53,16 @@ class Game{
       this._gameOver();
     }
     // To Do player + attackSB collissions
+    this.attackSB.forEach((attack) => {
+      if ((this.player.x >= attack.x && this.player.x <= attack.x + attack.width ||
+        this.player.x + this.player.width >= attack.x && this.player.x + this.player.width <= attack.x + attack.width || attack.x >= this.player.x && attack.x <= this.player.x + this.player.width)
+        &&
+       (this.player.y >= attack.y -20 && this.player.y <= attack.y - 20 + attack.height ||
+        this.player.y + this.player.height >= attack.y - 20 && this.player.y + this.player.height <= attack.y - 20 + attack.height || attack.y -20 >= this.player.y && attack.y - 20 <= this.player.y + this.player.height )) {
+          this._gameOver();
+        }
+    })
+    
    }
    
     _checkKills() {
@@ -65,23 +75,19 @@ class Game{
           if(enemie.health == 0) {
           this.points++;
           let indexEnemie = this.enemies.indexOf(enemie);
-          this.player.bullets.splice(indexBullet, 1);
           this.enemies.splice(indexEnemie, 1);
           }
-          //Same problem. Loop.
-          if(this.points >= 2) {
-            this._generateSuperboss();
-            this._generateAttackSB();
-          }
-          
-          
-          // if (this.points == 30) {
-          //   this._winPage(); => winpage to decide when it's happening
-          // }
         } 
       });
       if(bullet.x == 950) {
         this.player.bullets.splice(indexBullet, 1);
+      }
+      if(bullet.x >= this.superboss.x) {
+        this.superboss.health--;
+        this.player.bullets.splice(indexBullet, 1);
+        if(this.superboss.health == 0) {
+          this._winPage();
+        }
       }
     });
   }
@@ -91,8 +97,9 @@ class Game{
     }
 
   _drawSuperboss(){
-    this.ctx.fillStyle = "green";
-    this.ctx.fillRect(this.superboss.x, this.superboss.y, this.superboss.width, this.superboss.height);
+    this.ctx.drawImage(this.superboss.image, this.superboss.x, this.superboss.y, this.superboss.width, this.superboss.height);
+    // this.ctx.fillStyle = "green";
+    // this.ctx.fillRect(this.superboss.x, this.superboss.y, this.superboss.width, this.superboss.height);
   } 
 //New generate Attack
   _generateAttackSB() {
@@ -175,6 +182,8 @@ class Game{
   start() {
     this._update();
     this._generateEnemies();
+    setTimeout(() => this._generateSuperboss(), 10000);
+    setTimeout(() => this._generateAttackSB(), 10000);
     this._assignControls();
     ambientSound.play();
   }

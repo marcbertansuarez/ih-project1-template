@@ -6,6 +6,7 @@ class Player {
     this.width = width;
     this.height = height;
     this.bullets = [];
+    this.onCooldown = false;
   }
 
   moveRight() {
@@ -18,14 +19,14 @@ class Player {
 
   shoot() {
     const newBullets = new Bullets(this.width + this.x - 10, 455 - this.height / 2, 40, 40);
-    if(newBullets.shootingDelay == false && this.bullets.length < 3) {
+    if(this.onCooldown == false) {
       this.bullets.push(newBullets);
       newBullets._shooting();
-      newBullets.shootingDelay = true;
+      this.onCooldown = true;
       shootSound.play();
       setTimeout(() => {
-        newBullets.shootingDelay = false;
-      }, 800);
+        this.onCooldown = false;
+      }, 200);
     }
   }
 }

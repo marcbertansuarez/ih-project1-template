@@ -16,6 +16,9 @@ bullet.src = "../img/bullet.png";
 
 const zombieArr = [zombie1, zombie2, zombie3];
 
+const bigZombie = new Image();
+bigZombie.src = "../img/bigzombie.png";
+
 const shootSound = new Audio("../sounds/singleshot2.mp3");
 shootSound.volume = 0.2;
 

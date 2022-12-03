@@ -1,6 +1,6 @@
 class AttackSB {
     constructor () {
-        this.x = Math.floor(Math.random() * 850);
+        this.x = Math.floor(Math.random() * 750);
         this.y = -100;
         this.width = 50;
         this.height = 50;

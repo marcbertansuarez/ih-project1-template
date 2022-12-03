@@ -1,5 +1,6 @@
 class SuperBoss {
     constructor (x, y, width, height) {
+        this.image = bigZombie;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -13,7 +14,7 @@ class SuperBoss {
     }
     _runLeft() {
         this.runSuperbossInt = setInterval(() => {
-              if (this.x == 600) {
+              if (this.x == 800) {
                   clearInterval(this.runSuperbossInt);
               }
             this.x = this.x - 10;

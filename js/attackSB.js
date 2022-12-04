@@ -1,5 +1,6 @@
 class AttackSB {
     constructor () {
+        this.image = zombieSkull;
         this.x = Math.floor(Math.random() * 750);
         this.y = -100;
         this.width = 50;
@@ -12,7 +13,7 @@ class AttackSB {
             if (this.x > 630) {
                 clearInterval(this.falldownID);
             }
-            this.y = this.y + 10;
+            this.y = this.y + 3;
         }, 40) 
     }
 }

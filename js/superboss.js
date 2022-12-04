@@ -14,10 +14,10 @@ class SuperBoss {
     }
     _runLeft() {
         this.runSuperbossInt = setInterval(() => {
-              if (this.x == 800) {
+              if (this.x == 750) {
                   clearInterval(this.runSuperbossInt);
               }
-            this.x = this.x - 10;
+            this.x = this.x - 5;
         }, 40)
     }
 

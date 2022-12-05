@@ -22,7 +22,7 @@ class Game{
        const newEnemies = new Enemies(1150, 380, 100, 100);
        newEnemies._runLeft();
        this.enemies.push(newEnemies)
-       if (this.points == 2) {
+       if (this.points == 15) {
         clearInterval(this.generateEnemiesInt);
         soundZombie.pause();
        } 
@@ -165,6 +165,8 @@ class Game{
     winPage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display:none";
+    ambientSound.pause();
+    soundMonster.pause();
    }
 
   _assignControls() {
@@ -207,9 +209,9 @@ class Game{
   start() {
     this._update();
     this._generateEnemies();
-    setTimeout(() => this._generateSuperboss(), 10000);
-    setTimeout(() => this._generateAttackSB(), 10000);
-    setTimeout(() => this._generateSBHealth(), 11000);
+    setTimeout(() => this._generateSuperboss(), 20000);
+    setTimeout(() => this._generateAttackSB(), 20000);
+    setTimeout(() => this._generateSBHealth(), 21000);
     this._assignControls();
     ambientSound.play();
   }

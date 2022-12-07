@@ -4,7 +4,9 @@
 }
 
 /* Basic styles, change according to your style */
-
+body {
+  background-color: black;
+}
 
 #start-page {
   background-image: url("../img/wp2632905-wallpaper-zombie.jpg");

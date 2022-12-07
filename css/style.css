@@ -9,7 +9,7 @@ body {
 }
 
 #start-page {
-  background-image: url("/img/wp2632905-wallpaper-zombie.jpg");
+  background-image: url("../img/wp2632905-wallpaper-zombie.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 600px;
@@ -119,7 +119,7 @@ body {
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
-  background-image: url("/img/survived.jpeg");
+  background-image: url("../img/survived.jpeg");
   background-size: cover;
   background-repeat: no-repeat; 
 }
@@ -145,7 +145,7 @@ body {
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
-  background-image: url("/img/youdied.jpg");
+  background-image: url("../img/youdied.jpg");
   background-size: cover;
   background-repeat: no-repeat; 
 }

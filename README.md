@@ -39,7 +39,5 @@ Minimum user stories:
 
 ## Useful links
 
-<!-- When you finish, add these links and commit -->
-
 - [Presentation slides](https://slides.com/marcbs/zombeapocalypse)
-- [Deployed game]()
+- [Deployed game](https://marcbertansuarez.github.io/zombie-apocalypse-game/)
